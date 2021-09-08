@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val toastCorret = Toast.makeText(this, R.string.correct_toast, Toast.LENGTH_SHORT)
-        val toastinCorret = Toast.makeText(this, R.string.incorrect_tost, Toast.LENGTH_SHORT)
 
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
@@ -37,7 +35,6 @@ class MainActivity : AppCompatActivity() {
 
         trueButton.setOnClickListener {
             // 버튼클릭의 응답을 여기서 처리한다.
-            toastCorret.setGravity(Gravity.TOP, Gravity.CENTER, Gravity.CENTER)
             checkAnswer(true)
         }
         falseButton.setOnClickListener {
