@@ -2,10 +2,14 @@ package brnand.brnand_chapter04
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import bnrand.brnandchapter04.Question
+
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var trueButton: Button
@@ -26,6 +30,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val provider: ViewModelProvider = ViewModelProvider(this)
+        val quizViewModel = provider.get(QuizViewModel::class.java)
+        Log.d(TAG," Got a Quiz ViewModel")
 
 
         trueButton = findViewById(R.id.true_button)
