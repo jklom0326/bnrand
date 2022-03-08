@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nextButton: Button
     private lateinit var questionTextView: TextView
 
+    //리스트
     private val questionBank = listOf(
         Question(R.string.question_australia, true),
         Question(R.string.question_oceans, true),
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         val quizViewModel = provider.get(QuizViewModel::class.java)
         Log.d(TAG," Got a Quiz ViewModel")
 
-
+        //버튼
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
         nextButton = findViewById(R.id.next_button)
