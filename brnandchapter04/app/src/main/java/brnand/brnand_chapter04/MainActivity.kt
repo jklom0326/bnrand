@@ -40,8 +40,7 @@ class MainActivity : AppCompatActivity() {
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
         nextButton = findViewById(R.id.next_button)
-        //스택 로깅해보기위해 주석침
-//        questionTextView = findViewById(R.id.question_text_view)
+        questionTextView = findViewById(R.id.question_text_view)
 
         trueButton.setOnClickListener {
             // 버튼클릭의 응답을 여기서 처리한다.
