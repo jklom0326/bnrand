@@ -17,13 +17,22 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nextButton: Button
     private lateinit var questionTextView: TextView
 
+    private val quizViewModel: QuizViewModel by lazy {
+        ViewModelProvider(this).get(QuizViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate(Bundle?) called")
         setContentView(R.layout.activity_main)
 
-        val provider: ViewModelProvider = ViewModelProvider(this)
-        val quizViewModel = provider.get(QuizViewModel::class.java)
-        Log.d(TAG," Got a Quiz ViewModel")
+        //ViewModelProvider(this)를 호출하면 현재 액티비티와 연관된 ViewModelProvider 인스턴스를 생성하고 반환한다.
+//        val provider: ViewModelProvider = ViewModelProvider(this)
+        //그리고 provider.get(QuizViewModel::class.java)를 호출하면 QuizViewModel인스턴스를 반환한다.
+//        val quizViewModel = provider.get(QuizViewModel::class.java)
+        // 이 두줄을 한줄로 작성할 수 있다.
+//        viewModelProvider(this).get(QuizViewModel::class.java)
+//        Log.d(TAG," Got a Quiz ViewModel")
 
         //버튼
         trueButton = findViewById(R.id.true_button)
@@ -41,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         }
         // 다음버튼을 누르면 리스트에 있는 다음 문제가 나온다
         nextButton.setOnClickListener {
-            currentIndex =(currentIndex + 1) % questionBank.size
+            quizViewModel.moveToNext()
             updateQuestion()
         }
 
@@ -50,18 +59,44 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun updateQuestion(){
-        val questionTextResId = questionBank[currentIndex].tesxtResId
+        val questionTextResId = quizViewModel.currentQuestionText
         questionTextView.setText(questionTextResId)
     }
 
     private fun checkAnswer(userAnswer: Boolean){
-        val correctAnswer = questionBank[currentIndex].answer
-
+        val correctAnswer = quizViewModel.currentQuestionAnswer
         val messageResId = if (userAnswer == correctAnswer) {
             R.string.correct_toast
         } else{
             R.string.incorrect_tost
         }
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show()
+    }
+
+    //디버깅용 액티비티
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG,"onStart() Called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG,"onResume() Called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG,"onPause() Called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG,"onStop() Called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG,"onDestroy() Called")
     }
 }
