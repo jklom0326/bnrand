@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import bnrand.brnandchapter04.Question
 
 private const val TAG = "MainActivity"
+private const val KET_INDEX = "index"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var trueButton: Button
@@ -25,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate(Bundle?) called")
         setContentView(R.layout.activity_main)
-
         //ViewModelProvider(this)를 호출하면 현재 액티비티와 연관된 ViewModelProvider 인스턴스를 생성하고 반환한다.
 //        val provider: ViewModelProvider = ViewModelProvider(this)
         //그리고 provider.get(QuizViewModel::class.java)를 호출하면 QuizViewModel인스턴스를 반환한다.
@@ -33,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         // 이 두줄을 한줄로 작성할 수 있다.
 //        viewModelProvider(this).get(QuizViewModel::class.java)
 //        Log.d(TAG," Got a Quiz ViewModel")
+
+        val currentIndex = savedInstanceState?.getInt(KET_INDEX, 0 ) ?: 0
+        quizViewModel.currentIndex = currentIndex
 
         //버튼
         trueButton = findViewById(R.id.true_button)
@@ -88,6 +91,12 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         Log.d(TAG,"onPause() Called")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.d(TAG,"onSaveInstanceState")
+        outState.putInt(KET_INDEX, quizViewModel.currentIndex)
     }
 
     override fun onStop() {
