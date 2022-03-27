@@ -25,13 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate(Bundle?) called")
         setContentView(R.layout.activity_main)
-        //ViewModelProvider(this)를 호출하면 현재 액티비티와 연관된 ViewModelProvider 인스턴스를 생성하고 반환한다.
-//        val provider: ViewModelProvider = ViewModelProvider(this)
-        //그리고 provider.get(QuizViewModel::class.java)를 호출하면 QuizViewModel인스턴스를 반환한다.
-//        val quizViewModel = provider.get(QuizViewModel::class.java)
-        // 이 두줄을 한줄로 작성할 수 있다.
-//        viewModelProvider(this).get(QuizViewModel::class.java)
-//        Log.d(TAG," Got a Quiz ViewModel")
 
         val currentIndex = savedInstanceState?.getInt(KET_INDEX, 0 ) ?: 0
         quizViewModel.currentIndex = currentIndex
