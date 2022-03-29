@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var trueButton: Button
     private lateinit var falseButton: Button
     private lateinit var nextButton: Button
+    private lateinit var cheatButton: Button
     private lateinit var questionTextView: TextView
 
     private val quizViewModel: QuizViewModel by lazy {
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
         nextButton = findViewById(R.id.next_button)
+        cheatButton = findViewById(R.id.cheat_button)
         questionTextView = findViewById(R.id.question_text_view)
 
         trueButton.setOnClickListener {
@@ -43,6 +45,12 @@ class MainActivity : AppCompatActivity() {
             // 버튼클릭의 응답을 여기서 처리한다.
             checkAnswer(false)
         }
+        // 커닝하기 버튼
+        cheatButton.setOnClickListener {
+            //cheatActivity를 시작한다.
+
+        }
+
         // 다음버튼을 누르면 리스트에 있는 다음 문제가 나온다
         nextButton.setOnClickListener {
             quizViewModel.moveToNext()
