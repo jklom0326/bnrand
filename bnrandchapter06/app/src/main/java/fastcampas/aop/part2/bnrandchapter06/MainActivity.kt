@@ -1,5 +1,6 @@
 package fastcampas.aop.part2.bnrandchapter06
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -47,8 +48,9 @@ class MainActivity : AppCompatActivity() {
         }
         // 커닝하기 버튼
         cheatButton.setOnClickListener {
-            //cheatActivity를 시작한다.
-
+            //CheatActivity를 시작한다.
+            val intent = Intent(this, CheatActivity::class.java)
+            startActivity(intent)
         }
 
         // 다음버튼을 누르면 리스트에 있는 다음 문제가 나온다
@@ -56,7 +58,6 @@ class MainActivity : AppCompatActivity() {
             quizViewModel.moveToNext()
             updateQuestion()
         }
-
         updateQuestion()
     }
 
