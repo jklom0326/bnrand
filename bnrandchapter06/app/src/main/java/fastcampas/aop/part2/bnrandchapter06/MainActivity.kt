@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 
 private const val TAG = "MainActivity"
 private const val KET_INDEX = "index"
+private const val REQUEST_CODE_CHEAT = 0
 
 class MainActivity : AppCompatActivity() {
     private lateinit var trueButton: Button
@@ -49,8 +50,9 @@ class MainActivity : AppCompatActivity() {
         // 커닝하기 버튼
         cheatButton.setOnClickListener {
             //CheatActivity를 시작한다.
-            val intent = Intent(this, CheatActivity::class.java)
-            startActivity(intent)
+            val answerIsTrue = quizViewModel.currentQuestionAnswer
+            val intent = CheatActivity.newIntent(this@MainActivity, answerIsTrue)
+            startActivityForResult(intent, REQUEST_CODE_CHEAT)
         }
 
         // 다음버튼을 누르면 리스트에 있는 다음 문제가 나온다
