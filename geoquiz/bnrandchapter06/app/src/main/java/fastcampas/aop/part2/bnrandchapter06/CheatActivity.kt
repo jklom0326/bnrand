@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 
-private const val EXTRA_ANSWER_SHOWN = "package fastcampas.aop.part2.bnrandchapter06.answer_shown"
+const val EXTRA_ANSWER_SHOWN = "package fastcampas.aop.part2.bnrandchapter06.answer_shown"
 private const val EXTRA_ANSWER_IS_TRUE =
     "fastcampas.aop.part2.bnrandchapter06.answer_is_ture"
 
