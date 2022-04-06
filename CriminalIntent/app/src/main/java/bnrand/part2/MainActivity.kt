@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         if (currentFragment == null) {
             val fragment = CrimeFragment()
-            //
+            // 프래그먼트 트랜잭션을 생성하고 커밋한다.
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragment_container, fragment)
