@@ -23,7 +23,7 @@ class CrimeListFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "TOtal crimes: ${crimeLiostViewModel.crimes.size}")
+        Log.d(TAG, "Total crimes: ${crimeLiostViewModel.crimes.size}")
     }
 
     override fun onCreateView(
@@ -41,6 +41,24 @@ class CrimeListFragment: Fragment() {
 
     private inner class CrimeHolder(view: View): RecyclerView.ViewHolder(view) {
         val titleTextView: TextView = itemView.findViewById(R.id.crime_title)
+        val dateTextView: TextView = itemView.findViewById(R.id.crime_date)
+    }
+
+    private inner class CrimeAdapter(var crimes: List<Crime>): RecyclerView.Adapter<CrimeHolder>() {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CrimeHolder {
+            val view = layoutInflater.inflate(R.layout.list_item_crime, parent, false)
+            return CrimeHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: CrimeHolder, position: Int) {
+            val crime = crimes[position]
+            holder.apply {
+                titleTextView.text = crime.title
+                dateTextView.text = crime.date.toString()
+            }
+        }
+
+        override fun getItemCount(): Int =crimes.size
     }
 
     companion object {
