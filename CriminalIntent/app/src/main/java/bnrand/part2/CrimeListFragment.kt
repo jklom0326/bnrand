@@ -50,6 +50,8 @@ class CrimeListFragment: Fragment() {
             return CrimeHolder(view)
         }
 
+        //뷰홀더
+
         override fun onBindViewHolder(holder: CrimeHolder, position: Int) {
             val crime = crimes[position]
             holder.apply {
