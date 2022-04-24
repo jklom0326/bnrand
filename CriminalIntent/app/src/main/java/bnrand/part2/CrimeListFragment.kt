@@ -57,7 +57,7 @@ class CrimeListFragment: Fragment() {
                 dateTextView.text = crime.date.toString()
             }
         }
-
+// view holder
         override fun getItemCount(): Int =crimes.size
     }
 
