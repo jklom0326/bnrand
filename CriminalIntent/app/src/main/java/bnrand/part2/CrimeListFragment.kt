@@ -1,5 +1,6 @@
 package bnrand.part2
 
+import android.content.Context
 import android.opengl.Visibility
 import android.os.Bundle
 import android.text.format.DateFormat
@@ -15,17 +16,27 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
 
 private const val TAG = "CrimeListFragment"
 
 class CrimeListFragment: Fragment() {
 
+    interface CallBacks {
+        fun onCrimeSelected(crimeId: UUID)
+    }
+
+    private var callbacks: CallBacks? = null
     private lateinit var crimeRecyclerView: RecyclerView
     private var adapter: CrimeAdapter? = CrimeAdapter(emptyList())
-
     private val crimeListViewModel: CrimeListViewModel by lazy {
         ViewModelProvider(this)[CrimeListViewModel::class.java]
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callbacks = context as CallBacks?
     }
 
     override fun onCreateView(
@@ -52,6 +63,11 @@ class CrimeListFragment: Fragment() {
                 }
             }
         )
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callbacks = null
     }
 
     private fun updateUI(crimes: List<Crime>) {
@@ -82,7 +98,7 @@ class CrimeListFragment: Fragment() {
         }
 
         override fun onClick(p0: View?) {
-            Toast.makeText(context, "${crime.title} pressed!", Toast.LENGTH_SHORT).show()
+            callbacks?.onCrimeSelected(crime.id)
         }
     }
 
