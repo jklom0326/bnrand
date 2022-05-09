@@ -8,7 +8,8 @@ import java.util.*
 data class Crime(@PrimaryKey val id: UUID = UUID.randomUUID(),
                  var title: String = "",
                  var date: Date = Date(),
-                 var isSolved: Boolean = false)
+                 var isSolved: Boolean = false,
+                 var suspect: String = "")
 // id, title(제목), date(발생일자), isSolved(해결여부)
 /*
  UUID는 안드로이드 프레임워크에 포함된 유틸리티 클래스다 (UUID Universally Unique Identifier)
