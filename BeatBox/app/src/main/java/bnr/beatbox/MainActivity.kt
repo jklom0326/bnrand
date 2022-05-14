@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
     private inner class SoundHolder(private val binding: ListItemSoundBinding) : RecyclerView.ViewHolder(binding.root) {
     }
-
+    // 어댑터
     private inner class SoundAdapter(private val sounds:List<Sound>): RecyclerView.Adapter<SoundHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SoundHolder {
