@@ -12,6 +12,6 @@
         android:layout_height="120dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        tools:text="@{viewModel.title}"/>
+        android:text="@{viewModel.title}"/>
 
 </layout>
